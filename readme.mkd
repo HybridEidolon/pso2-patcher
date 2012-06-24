@@ -1,0 +1,18 @@
+Custom PSO2 Patcher
+===================
+
+Simple patcher for Phantasy Star Online 2 that supports alternate mirrors and
+can pick up where it left off.
+
+Currently not for common use. Need to write a GUI first.
+
+How to use
+----------
+
+change the field default values in jp.pso2.PSOPatcher to point to the paths you
+want to update. the defaults work for 32-bit Windows Vista and 7 installations
+but you will need to change the download path to get it working for XP, etc
+
+run jp.pso2.PSO2Patcher
+
+no easy way to run it without the jdk yet
