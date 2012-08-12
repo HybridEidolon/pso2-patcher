@@ -19,7 +19,7 @@ public class PatchFile {
 		md5sum = s.next();
 		
 		try {
-			url = new URL(location + localPath);
+			url = new URL(location + "/" + localPath);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
