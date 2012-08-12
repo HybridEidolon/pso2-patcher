@@ -4,15 +4,28 @@ Custom PSO2 Patcher
 Simple patcher for Phantasy Star Online 2 that supports alternate mirrors and
 can pick up where it left off.
 
-Currently not for common use. Need to write a GUI first.
-
 How to use
 ----------
 
-change the field default values in jp.pso2.PSOPatcher to point to the paths you
-want to update. the defaults work for 32-bit Windows Vista and 7 installations
-but you will need to change the download path to get it working for XP, etc
+Developers:
 
-run jp.pso2.PSO2Patcher
+1. Import project to Eclipse
+2. Run jp.pso2.gui.PatcherUI
 
-no easy way to run it without the jdk yet
+Users:
+
+Download precompiled packages from github
+
+Mirror hosts:
+
+Download the jar-only package from github, use the following command-line to
+begin mirroring
+
+  java -jar pso2-patcher.jar (path-to-save-to) (mirror1) [mirror2] [mirror3]
+
+You can add as many mirrors to sync with as you want, but they must all match
+their version.ver files for the sync to run at all.
+
+Warning: PSO2's total installation is about 5GiB big as of this writing, so
+expect a _lot_ of bandwidth usage even with a small number of users if they are
+going to patch straight from install.
