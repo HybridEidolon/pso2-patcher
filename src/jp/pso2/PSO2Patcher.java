@@ -49,8 +49,8 @@ public class PSO2Patcher implements Runnable {
 		
 		if (multithreaded) {
 			final Random rand = new Random();
-			exec = new ScheduledThreadPoolExecutor(8);
-			exec.setMaximumPoolSize(256);
+			exec = new ScheduledThreadPoolExecutor(32);
+			exec.setMaximumPoolSize(32);
 			ThreadFactory tf = new ThreadFactory() {
 
 				@Override
@@ -118,9 +118,8 @@ public class PSO2Patcher implements Runnable {
 		
 		listener.setNumberOfOperations(numOps);
 		
-		boolean res;
-		res = downloadPatches(launcherFiles);
-		res = downloadPatches(patchFiles);
+		downloadPatches(launcherFiles);
+		downloadPatches(patchFiles);
 		if (errorFlag) {
 			return;
 		}
@@ -132,6 +131,7 @@ public class PSO2Patcher implements Runnable {
 			try {
 				System.out.println("waiting for termination");
 				r = exec.awaitTermination(5, TimeUnit.HOURS);
+				System.out.println("terminated");
 				downloadExec.shutdown();
 				downloadExec.awaitTermination(5, TimeUnit.HOURS);
 			} catch (InterruptedException e1) {
@@ -144,8 +144,8 @@ public class PSO2Patcher implements Runnable {
 		}
 		
 		
-		if (install && res) {
-			
+		if (install) {
+			System.out.println("installing");
 			installFiles(updatedFiles);
 			updatedFiles.clear();
 		}
@@ -220,7 +220,7 @@ public class PSO2Patcher implements Runnable {
 						public void run() {
 							try {
 								changed = true;
-								//System.out.println("Downloading " + (float)((double)f.fileSize/1048576) + " MiB of data for " + f.localPath + "...");
+								System.out.println("Downloading " + (float)((double)f.fileSize/1048576) + " MiB of data for " + f.localPath + "...");
 								ReadableByteChannel rbc = Channels.newChannel(f.url.openStream());
 								File fff = new File(downloadDir + "\\" + f.localPath);
 								fff.getParentFile().mkdirs();
